@@ -1,32 +1,22 @@
 import SwiftUI
-//import RealityKit
-import ARKit
 
 struct ContentView: View {
+    @State private var emotion = "😐 감정: 대기 중..."
+
     var body: some View {
-        FaceTrackingView()
-            .edgesIgnoringSafeArea(.all)
-
-//        { scene in
-//            let anchor = AnchorEntity(world: .zero)
-//            scene.addAnchor(anchor)
-//            
-//            if let entity = try? Entity.load(named: "my_3d_model") {
-//                scene.addAnchor(AnchorEntity(world: .zero))
-//                scene.anchors.first?.addChild(entity)
-//            } else {
-//                print("❌ 3D 모델을 찾을 수 없음: my_3d_model")
-//            }
-//            do {
-//                let entity = try Entity.load(named: "my_3d_model")
-//                anchor.addChild(entity)
-//            } catch {
-//                print("❌ 3D 모델을 찾을 수 없음: my_3d_model, \(error)")
-            
-        
+        ZStack {
+            FaceTrackingView(emotion: $emotion)
+            VStack {
+                Spacer()
+                Text(emotion)
+                    .font(.largeTitle)
+                    .bold()
+                    .padding()
+                    .background(.white.opacity(0.7))
+                    .cornerRadius(12)
+                    .padding(.bottom, 40)
+            }
+        }
+        .edgesIgnoringSafeArea(.all)
     }
-}
-
-#Preview {
-    ContentView()
 }

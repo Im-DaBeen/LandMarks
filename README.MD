@@ -83,8 +83,21 @@ Landmarks/
 - RealityKit은 제거하고, ARKit 단독으로 ARSCNView + ARFaceAnchor.blendShapes를 활용
 - 주요 감정(행복, 놀람, 화남 등)을 분류하고 Console에 출력하는 구조로 변경
 
-
+## ✅ 현재 진행 내용 (ARKit 감정 분석 앱)
+- RealityKit 제거 및 ARSCNView 기반 구조로 리팩토링
+- ARFaceAnchor.blendShapes에서 표정 요소 추출
+- 조건별 감정 출력 로직 구성 (print(...))
+- Xcode Debug Console에서 감정 실시간 확인 가능
 
 ---
 
-
+## 감정 분석 포인트 추가
+            ```var detectedEmotion = "😐 감정: 중립"
+            if smileLeft > 0.5 && smileRight > 0.5 {
+                detectedEmotion = "😊 감정: 행복"
+            } else if jawOpen > 0.6 {
+                detectedEmotion = "😮 감정: 놀람"
+            } else if browDownLeft > 0.6 {
+                detectedEmotion = "😠 감정: 화남"
+            }```
+ - ARKit의 얼굴 감정 분석 요소들을 더 세분화하여 섬세한 감정분석 가능할 것으로 예상

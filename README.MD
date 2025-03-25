@@ -52,8 +52,8 @@
 | 앱 실행 후 Face Tracking 작동 안됨 | 기기 지원 여부 확인 (iPhone X 이상), Info.plist 설정, 권한 허용 |
 | 3D 모델을 찾을 수 없음 (`Entity.load(named:)`) | `.usdz` 파일 유효성 확인, RealityKitContent에 정확하게 추가 |
 | Unable to verify app | iPhone에서 인터넷 연결 후 개발자 인증서 신뢰 설정 필요 |
-| Invalid package format 오류 | `.usdz` 파일이 단순 확장자 파일이 아닌지 확인, Reality Converter로 변환 |
-| 코드 서명 오류 | `Automatically manage signing`, 프로비저닝 프로파일 재설정 |
+| Invalid package format 오류 | `.usdz` 파일이 단순 확장자 파일이 아닌지 확인, Reality Converter로 변환(진행중)| 
+| 코드 서명 오류 | `Automatically manage signing` 체크, 프로비저닝 프로파일 재설정 |
 
 ---
 
@@ -67,3 +67,9 @@ Landmarks/
 │   └── face_mask.usdz
 ├── Assets.xcassets
 ├── Info.plist
+
+## 현재의 문제상황과 앞으로의 방향
+- reality kit를 통한 .usdz 파일 만들어야 카메라 화면에 3d 모델 구현되는 것으로 생각하였음
+- 그러나 ARKit만으로도 충분히 구현 가능한 것으로 판단
+- 화면에 ARkit 구현하고 감정분석 가능하도록 얼굴 메쉬 포인트 데이터 주고받는 부분 확인할 것
+- 이후 감정분석을 위한 로직 구현하기

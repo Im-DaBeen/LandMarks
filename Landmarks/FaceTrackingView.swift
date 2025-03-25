@@ -1,46 +1,53 @@
 import SwiftUI
 import ARKit
-import RealityKit
+import SceneKit
 
 struct FaceTrackingView: UIViewControllerRepresentable {
-    let onLoad: (RealityKit.Scene) -> Void  // ✅ 클로저 추가
-
-    init(onLoad: @escaping (RealityKit.Scene) -> Void) {
-        self.onLoad = onLoad
-    }
-
     func makeUIViewController(context: Context) -> UIViewController {
         let viewController = UIViewController()
-        let arView = ARView(frame: viewController.view.bounds/*, cameraMode: .ar, automaticallyConfigureSession: true*/)
+        let sceneView = ARSCNView(frame: viewController.view.bounds)
+        sceneView.delegate = context.coordinator
 
-        // ✅ Face Tracking 지원 확인
+        // Face Tracking 지원 기기인지 확인
         guard ARFaceTrackingConfiguration.isSupported else {
-            print("❌ Face Tracking이 지원되지 않는 기기입니다.")
+            print("❌ 이 기기는 Face Tracking을 지원하지 않습니다.")
             return viewController
         }
 
-        // ✅ AR 세션 시작
         let config = ARFaceTrackingConfiguration()
-        arView.session.run(config, options: [])
+        config.isLightEstimationEnabled = true
+        sceneView.session.run(config, options: [])
 
-        // ✅ 3D 모델 로드
-                if let entity = try? Entity.load(named: "face_mask") {  // "face_mask.usdz" 파일 로드
-                    let anchor = AnchorEntity(.face)
-                    anchor.addChild(entity)
-                    arView.scene.addAnchor(anchor)
-                } else {
-                    print("❌ 3D 모델을 찾을 수 없음: face_mask")
-                }
-        
-        viewController.view.addSubview(arView)
-
-        // ✅ RealityKit Scene을 onLoad 클로저에 전달
-        DispatchQueue.main.async {
-            self.onLoad(arView.scene)
-        }
-
+        viewController.view.addSubview(sceneView)
         return viewController
     }
 
     func updateUIViewController(_ uiViewController: UIViewController, context: Context) {}
+
+    func makeCoordinator() -> Coordinator {
+        return Coordinator()
+    }
+
+    class Coordinator: NSObject, ARSCNViewDelegate {
+        func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
+            guard let faceAnchor = anchor as? ARFaceAnchor else { return }
+            let blendShapes = faceAnchor.blendShapes
+
+            let smileLeft = blendShapes[.mouthSmileLeft]?.floatValue ?? 0
+            let smileRight = blendShapes[.mouthSmileRight]?.floatValue ?? 0
+            let jawOpen = blendShapes[.jawOpen]?.floatValue ?? 0
+            let browDownLeft = blendShapes[.browDownLeft]?.floatValue ?? 0
+
+            // 간단한 감정 추정
+            if smileLeft > 0.5 && smileRight > 0.5 {
+                print("😊 감정: 행복해 보입니다.")
+            } else if jawOpen > 0.6 {
+                print("😮 감정: 놀람")
+            } else if browDownLeft > 0.6 {
+                print("😠 감정: 화남")
+            } else {
+                print("😐 감정: 중립")
+            }
+        }
+    }
 }

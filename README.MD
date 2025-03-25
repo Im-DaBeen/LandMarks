@@ -68,8 +68,23 @@ Landmarks/
 ├── Assets.xcassets
 ├── Info.plist
 
-## 현재의 문제상황과 앞으로의 방향
+---
+
+## 문제상황과 앞으로의 방향
 - reality kit를 통한 .usdz 파일 만들어야 카메라 화면에 3d 모델 구현되는 것으로 생각하였음
 - 그러나 ARKit만으로도 충분히 구현 가능한 것으로 판단
 - 화면에 ARkit 구현하고 감정분석 가능하도록 얼굴 메쉬 포인트 데이터 주고받는 부분 확인할 것
 - 이후 감정분석을 위한 로직 구현하기
+
+---
+
+## 🔄 방향 전환: RealityKit 제거 & ARKit 기반 감정 분석
+- 기존 프로젝트는 RealityKit 기반 3D 모델 오버레이 목적이었으나, 본래 목적은 실시간 감정 분석.
+- RealityKit은 제거하고, ARKit 단독으로 ARSCNView + ARFaceAnchor.blendShapes를 활용
+- 주요 감정(행복, 놀람, 화남 등)을 분류하고 Console에 출력하는 구조로 변경
+
+
+
+---
+
+

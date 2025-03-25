@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>NSCameraUsageDescription</key>
+    <string>Face Tracking을 위해 카메라 접근이 필요합니다.</string>
+
+    <key>ARKitFaceTrackingUsageDescription</key>
+    <string>얼굴 추적 기능을 사용하기 위해 필요합니다.</string>
+
+    <key>MetalAPIValidationEnabled</key>
+    <true/>
+
+    <key>NSAppTransportSecurity</key>
+    <dict>
+        <key>NSAllowsArbitraryLoads</key>
+        <true/>
+    </dict>
+</dict>
+</plist>

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0027CBA72D8C0580005A89A9 /* RealityKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0027CBA62D8C0580005A89A9 /* RealityKit.framework */; };
 		0027CBB02D8C0F02005A89A9 /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0027CBAF2D8C0F02005A89A9 /* Metal.framework */; };
+		00974FA12D929E4E0068EEC3 /* README.MD in Resources */ = {isa = PBXBuildFile; fileRef = 00974FA02D929E450068EEC3 /* README.MD */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +35,7 @@
 		0027CAFA2D8AF11B005A89A9 /* LandmarksUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LandmarksUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0027CBA62D8C0580005A89A9 /* RealityKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealityKit.framework; path = System/Library/Frameworks/RealityKit.framework; sourceTree = SDKROOT; };
 		0027CBAF2D8C0F02005A89A9 /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
+		00974FA02D929E450068EEC3 /* README.MD */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.MD; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -97,6 +99,7 @@
 		0027CAD72D8AF119005A89A9 = {
 			isa = PBXGroup;
 			children = (
+				00974FA02D929E450068EEC3 /* README.MD */,
 				0027CAE22D8AF119005A89A9 /* Landmarks */,
 				0027CAF32D8AF11B005A89A9 /* LandmarksTests */,
 				0027CAFD2D8AF11B005A89A9 /* LandmarksUITests */,
@@ -244,6 +247,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00974FA12D929E4E0068EEC3 /* README.MD in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
